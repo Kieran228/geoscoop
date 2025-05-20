@@ -1,12 +1,16 @@
 import Map from "./sections/Map";
 import "./index.css";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
     <>
-     <Map />
+      <SearchBar />
+      <Map />
     </>
   );
 }
 
 export default App;
+
+
