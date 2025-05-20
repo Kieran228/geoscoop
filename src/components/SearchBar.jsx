@@ -29,8 +29,14 @@ const SearchBar = () => {
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
         .then(response => response.json())
         .then(data => {
-          console.log("Data Recieved", data);
-          setSuggestions(data);
+          const simplifiedData = data.map(item => ({
+            id: item.place_id,
+            name: item.display_name,
+            rank: item.place_rank,
+            lat: parseFloat(item.lat),
+            lng: parseFloat(item.lon)
+          }));
+          setSuggestions(simplifiedData)
         })
         .catch(error => {
           console.error('Error', error);
@@ -50,10 +56,20 @@ const SearchBar = () => {
        onChange={(e) => setQuery(e.target.value)}
        />
 
+       {suggestions.length > 0 && (
+        <ul>
+          {suggestions.map(suggestion => (
+            <li key={suggestion.id}>
+              {suggestion.name}
+            </li>
+          ))}
+        </ul>
+       )}
+
        {/* Let's see what the data looks like */}
-       <pre>
+       {/* <pre>
         {JSON.stringify(suggestions, null, 2)}
-       </pre>
+       </pre> */}
     </div>
   )
 }
