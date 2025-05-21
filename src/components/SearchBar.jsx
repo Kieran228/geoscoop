@@ -19,6 +19,9 @@
 // We found out that we can detect outside clicks using the useRef hook. Let's try it...
 //? I was wondering if I should be using multiple useEffect hooks in one component. Reddit said it was okay, for certain use cases. It happens.
 
+// Great! We got it working, now I need it to actually do something when I click one of the suggestions.
+// I'm assuming that we will have to connect the map to the dropdown itself, or the nomatim api. Let's see...
+
 
 import { useEffect, useRef, useState } from "react";
 
@@ -32,7 +35,7 @@ const SearchBar = () => {
   const [showSuggestions, setshowSuggestions] = useState([false]);
 
   // Adding outside click detection reference
-  const searchContainerReference = useRef(null)
+  const searchContainerReference = useRef(null);
 
   //? how do i search for a location?
   // lets try a basic fetch request to the Nominatim api
