@@ -10,18 +10,17 @@
 // Great, we're getting results back from the api call. Thing is, i dont want to diplay all of this raw Data. There are a lot of properties that i dont actually need at this point in time. Let's clean this up and only keep what's important
 //todo We need to have it display as a dropdown menu with suggestions
 
-// We got the dropdown to display, but they aren't clickable yet and the list stays open all the time.
+// I got the dropdown to display, but they aren't clickable yet and the list stays open all the time.
 //todo Now we need to add selecting a location functionality...
 
 // Great, the dropdown list items are now clickable and return properties, but when i click outside of the search box nothing happens.
-//todo Now I need to add a click-outside click handler, will detect clicks outside the component. 
+//todo Now I need to add a click-outside click handler, will detect clicks outside the component.
 //? I dont know how to detect clicks outside of my componenet, let me look it up
-// We found out that we can detect outside clicks using the useRef hook. Let's try it...
+// I found out that we can detect outside clicks using the useRef hook. Let's try it...
 //? I was wondering if I should be using multiple useEffect hooks in one component. Reddit said it was okay, for certain use cases. It happens.
 
-// Great! We got it working, now I need it to actually do something when I click one of the suggestions.
+// Great! I got it working, now I need it to actually do something when I click one of the suggestions.
 // I'm assuming that we will have to connect the map to the dropdown itself, or the nomatim api. Let's see...
-
 
 import { useEffect, useRef, useState } from "react";
 
@@ -43,15 +42,18 @@ const SearchBar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (searchContainerReference.current && !searchContainerReference.current.contains(event.target)) {
+      if (
+        searchContainerReference.current &&
+        !searchContainerReference.current.contains(event.target)
+      ) {
         setshowSuggestions(false);
       }
     };
 
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
-      }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   useEffect(() => {
@@ -106,8 +108,8 @@ const SearchBar = () => {
         <ul>
           {suggestions.map((suggestion) => (
             <li
-             key={suggestion.id}
-             onClick={() => handleSelectSuggestion(suggestion)}
+              key={suggestion.id}
+              onClick={() => handleSelectSuggestion(suggestion)}
             >
               {suggestion.name}
             </li>
