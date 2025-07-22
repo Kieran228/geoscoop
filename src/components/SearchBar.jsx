@@ -1,27 +1,3 @@
-//todo I created a simple searchbar that tracks the users input
-
-//todo next we need to implement the logic to actually be able to search for locations... what api will allow me to geocode that? OpenStreetMap has Nominatim, and they're both free. Let's try that
-
-//! I want to make sure not to add api calls for every keystroke within the input field, that would be too many requests
-//todo What I need to do is to wait for the user to pauses typing - Which is called "Debouncing".
-
-//todo Now lets update the app from it's previous functionality.
-
-// Great, we're getting results back from the api call. Thing is, i dont want to diplay all of this raw Data. There are a lot of properties that i dont actually need at this point in time. Let's clean this up and only keep what's important
-//todo We need to have it display as a dropdown menu with suggestions
-
-// I got the dropdown to display, but they aren't clickable yet and the list stays open all the time.
-//todo Now we need to add selecting a location functionality...
-
-// Great, the dropdown list items are now clickable and return properties, but when i click outside of the search box nothing happens.
-//todo Now I need to add a click-outside click handler, will detect clicks outside the component.
-//? I dont know how to detect clicks outside of my componenet, let me look it up
-// I found out that we can detect outside clicks using the useRef hook. Let's try it...
-//? I was wondering if I should be using multiple useEffect hooks in one component. Reddit said it was okay, for certain use cases. It happens.
-
-// Great! I got it working, now I need it to actually do something when I click one of the suggestions.
-// I'm assuming that we will have to connect the map to the dropdown itself, or the nomatim api. Let's see...
-
 import { useEffect, useRef, useState } from "react";
 
 const SearchBar = () => {
